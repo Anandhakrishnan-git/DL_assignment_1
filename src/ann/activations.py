@@ -28,13 +28,21 @@ def tanh(z):
 
 def tanh_derivative(z):
     """Derivative of Tanh activation function."""
-    t = tanh(z)
+    t = np.tanh(z)
     return 1 - t**2
 
 def softmax(z):
     """Softmax activation function."""
-    pass
+    z_shifted = z - np.max(z, axis=1, keepdims=True) # For numerical stability
+    exp_z = np.exp(z_shifted) 
+    return exp_z / np.sum(exp_z, axis=1, keepdims=True)
 
 def softmax_derivative(z):
     """Derivative of Softmax activation function."""
-    pass
+    s = softmax(z)
+    n, c = s.shape
+    jacobian = np.zeros((n, c, c), dtype=s.dtype)
+    for i in range(n):
+        si = s[i].reshape(-1, 1)
+        jacobian[i] = np.diagflat(si) - (si @ si.T) 
+    return jacobian
