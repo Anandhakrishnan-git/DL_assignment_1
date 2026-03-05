@@ -17,19 +17,24 @@ class NeuralLayer:
         if method == 'xavier':
             limit = np.sqrt(6 / (self.input_size + self.output_size))
             return np.random.uniform(-limit, limit, (self.input_size, self.output_size))
-        if method == 'he':
-            std = np.sqrt(2 / self.input_size)
-            return np.random.randn(self.input_size, self.output_size) * std
+        if method == 'zeros':
+            return np.zeros((self.input_size, self.output_size))
+        if method == 'random':
+            return np.random.randn(self.input_size, self.output_size) * 0.01
+        raise ValueError(f"Unknown weight initialization method: {method}")
 
     def forward(self, X):
         """Compute the forward pass."""
         return X @ self.W + self.b
 
-    def compute_gradients(self, X, d_out):
+    def compute_gradients(self, a_prev, d_out):
         """Compute gradients w.r.t. weights and biases."""
-        dW = X.T @ d_out
-        db = np.sum(d_out, axis=0)
+        dW = a_prev.T @ d_out # shape (input_size, batch_size) @ (batch_size, output_size) -> (input_size, output_size)
+        db = np.sum(d_out, axis=0) # shape (batch_size, output_size) -> (output_size,)
         self.grad_W = dW
         self.grad_b = db
+        self.grad_norm = np.sqrt(np.sum(dW**2) + np.sum(db**2))
         return dW, db
+    
+
     

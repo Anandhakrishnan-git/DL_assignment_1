@@ -2,7 +2,7 @@
 Loss/Objective Functions and Their Derivatives
 Implements: Cross-Entropy, Mean Squared Error (MSE)
 """
-from activations import softmax
+from .activations import softmax
 import numpy as np
 
 def CE_loss(y_true, y_pred):
