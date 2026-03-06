@@ -132,7 +132,10 @@ class NeuralNetwork:
             probs = softmax(logits)
             delta = (probs - y_true) / m
         elif self.loss_name == "mse":
-            delta = 2.0 * (logits - y_true) / m
+            probs = softmax(logits)
+            dL_dprobs = 2.0 * (probs - y_true) / m
+            jacobians = softmax_derivative(logits)
+            delta = np.einsum("bi,bij->bj", dL_dprobs, jacobians)
         else:
             raise ValueError(f"Unsupported loss: {self.loss_name}")
         

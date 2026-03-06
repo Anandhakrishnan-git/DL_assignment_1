@@ -22,11 +22,11 @@ def CE_loss_der(y_true, y_pred):
 
 def MSE(y_true, y_pred):
     """Mean Squared Error (MSE) loss function."""
-    #y_pred  = softmax(y_pred)  # Use softmax to convert logits to probabilities
+    y_pred  = softmax(y_pred)  # Use softmax to convert logits to probabilities
 
     return np.mean((y_true - y_pred) ** 2)
 
 def MSE_der(y_true, y_pred):
     """Derivative of Mean Squared Error (MSE) loss function."""
-    #y_pred  = softmax(y_pred)  # Use softmax to convert logits to probabilities
+    y_pred  = softmax(y_pred)  # Use softmax to convert logits to probabilities
     return 2 * (y_pred - y_true) / y_true.shape[0]

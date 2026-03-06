@@ -22,7 +22,7 @@ def parse_arguments():
     parser.add_argument('-e', '--epochs', type=int, default= 20, help='Number of training epochs')
     parser.add_argument('-b', '--batch_size', type=int, default= 64, help='Mini-batch size')
     parser.add_argument('-lr', '--learning_rate', type=float, default= 0.034369755404477266, help='Learning rate for optimizer')
-    parser.add_argument('-wd', '--weight_decay', type=float, default=0.00002152989422140758*0, help='Weight decay for L2 regularization')
+    parser.add_argument('-wd', '--weight_decay', type=float, default=0.00002152989422140758, help='Weight decay for L2 regularization')
     parser.add_argument('-o', '--optimizer', type=str, choices=['sgd', 'momentum', 'nag', 'rmsprop'], default='momentum', help='Optimizer to use')
     parser.add_argument('-nhl', '--num_layers', type=int, default=2, help='Number of hidden layers')
     parser.add_argument('-sz', '--hidden_size', type=int, nargs='+', default=[128,128], help='Number of neurons in each hidden layer')
