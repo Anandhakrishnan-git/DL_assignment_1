@@ -163,10 +163,6 @@ class NeuralNetwork:
         for i, (gw, gb) in enumerate(zip(grad_W_list, grad_b_list)):
             self.grad_W[i] = gw
             self.grad_b[i] = gb
-            # grad lists are ordered from last layer to first layer.
-            layer_idx = len(self.layers) - 1 - i
-            self.layers[layer_idx].grad_W = gw
-            self.layers[layer_idx].grad_b = gb
 
         return self.grad_W, self.grad_b
             
