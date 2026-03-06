@@ -133,7 +133,7 @@ class NeuralNetwork:
             delta = (probs - y_true) / m
         elif self.loss_name == "mse":
             probs = softmax(logits)
-            dL_dprobs = 2.0 * (probs - y_true) / m
+            dL_dprobs = 2.0 * (probs - y_true) / y_true.size
             jacobians = softmax_derivative(logits)
             delta = np.einsum("bi,bij->bj", dL_dprobs, jacobians)
         else:
@@ -157,12 +157,16 @@ class NeuralNetwork:
                 delta = (delta @ layer.W.T) * self.activation_derivative(self._z_cache[layer_idx - 1])
 
         
-        # create explicit object arrays to avoid numpy trying to broadcast shapes
+        # Create explicit object arrays to avoid numpy trying to broadcast shapes.
         self.grad_W = np.empty(len(grad_W_list), dtype=object)
         self.grad_b = np.empty(len(grad_b_list), dtype=object)
         for i, (gw, gb) in enumerate(zip(grad_W_list, grad_b_list)):
             self.grad_W[i] = gw
             self.grad_b[i] = gb
+            # grad lists are ordered from last layer to first layer.
+            layer_idx = len(self.layers) - 1 - i
+            self.layers[layer_idx].grad_W = gw
+            self.layers[layer_idx].grad_b = gb
 
         return self.grad_W, self.grad_b
             
