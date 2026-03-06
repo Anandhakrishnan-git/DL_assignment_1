@@ -27,13 +27,13 @@ def parse_arguments():
     parser.add_argument('-e', '--epochs', type=int, default=20, help='Number of training epochs (kept for CLI parity)')
     parser.add_argument('-b', '--batch_size', type=int, default=64,
                         help='Batch size for inference')
-    parser.add_argument('-lr', '--learning_rate', type=float, default= 0.0005315955681660468, help='Learning rate (kept for CLI parity)')
-    parser.add_argument('-wd', '--weight_decay', type=float, default=0.000067470476890152250, help='Weight decay (kept for CLI parity)')
+    parser.add_argument('-lr', '--learning_rate', type=float, default= 0.034369755404477266, help='Learning rate (kept for CLI parity)')
+    parser.add_argument('-wd', '--weight_decay', type=float, default=0.00002152989422140758, help='Weight decay (kept for CLI parity)')
     parser.add_argument('-o', '--optimizer', type=str, choices=['sgd', 'momentum', 'nag', 'rmsprop'],
-                        default='rmsprop', help='Optimizer (kept for CLI parity)')
-    parser.add_argument('-nhl', '--num_layers', type=int, default=3,
+                        default='momentum', help='Optimizer (kept for CLI parity)')
+    parser.add_argument('-nhl', '--num_layers', type=int, default=2,
                         help='Number of hidden layers')
-    parser.add_argument('-sz', '--hidden_size', type=int, nargs='+', default=[256, 256, 128],
+    parser.add_argument('-sz', '--hidden_size', type=int, nargs='+', default=[128, 128],
                         help='Number of neurons in each hidden layer')
     parser.add_argument('-a', '--activation', type=str, choices=['sigmoid', 'tanh', 'relu'],
                         default='relu', help='Activation function for hidden layers')
@@ -43,7 +43,7 @@ def parse_arguments():
                         default='xavier', help='Weight initialization method')
     parser.add_argument('-w_p', '--wandb_project', type=str, default='nn_training', help='W&B project name (kept for CLI parity)')
     parser.add_argument('--model_save_path', type=str, default='models/', help='Model save path (kept for CLI parity)')
-    parser.add_argument('--model_path', type=str, required=True,
+    parser.add_argument('--model_path', type=str,default= 'src/best_model.npy' ,
                         help='Path to saved model weights (relative path)')
 
     return parser.parse_args()

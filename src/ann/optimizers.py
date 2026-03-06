@@ -57,7 +57,7 @@ class NAG(Momentum):
             param += self.momentum * v_prev - self.velocity[key]
 
 class RMSprop(Optimizer):
-    def __init__(self, learning_rate=0.005, beta=0.9, epsilon=1e-8):
+    def __init__(self, learning_rate=0.001, beta=0.9, epsilon=1e-8):
         super().__init__(learning_rate)
         self.beta = beta
         self.epsilon = epsilon

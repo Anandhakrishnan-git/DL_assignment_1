@@ -418,3 +418,6 @@ FodyWeavers.xsd
 *.msp
 
 /.dl1env
+/.notebooks/wandb
+/.src/wandb
+/.src/ann/wandb

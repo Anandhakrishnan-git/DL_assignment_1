@@ -1,0 +1,25 @@
+{
+  "dataset": "mnist",
+  "epochs": 20,
+  "batch_size": 64,
+  "learning_rate": 0.034369755404477266,
+  "weight_decay": 2.152989422140758e-05,
+  "optimizer": "momentum",
+  "num_layers": 2,
+  "hidden_size": [
+    128,
+    128
+  ],
+  "activation": "relu",
+  "loss": "cross_entropy",
+  "weight_init": "xavier",
+  "wandb_project": "nn_training",
+  "model_save_path": "src/",
+  "val_loss": 0.10700838040772802,
+  "val_acc": 0.9818333333333333,
+  "test_loss": 0.08943301138038462,
+  "test_acc": 0.982,
+  "test_precision": 0.9820613002843341,
+  "test_recall": 0.9818533282164787,
+  "test_f1": 0.9819476436055663
+}
