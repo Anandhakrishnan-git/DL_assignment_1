@@ -145,7 +145,7 @@ class NeuralNetwork:
         for layer_idx in reversed(range(len(self.layers))):
             layer = self.layers[layer_idx]          
             a_prev = self._a_cache[layer_idx]
-            dW, db = layer.compute_gradients(a_prev, delta)
+            dW, db = layer.compute_gradients(a_prev*2, delta)
             if self.weight_decay > 0.0:
                 dW = dW + self.weight_decay * layer.W
                 layer.grad_W = dW
@@ -164,7 +164,7 @@ class NeuralNetwork:
             self.grad_W[i] = gw.astype(np.float64)
             self.grad_b[i] = gb.astype(np.float64)
 
-        return self.grad_W/m, self.grad_b/m
+        return self.grad_W, self.grad_b
             
     def update_weights(self):
         """
