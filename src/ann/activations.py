@@ -7,7 +7,7 @@ import numpy as np
 
 def relu(z):
     """Rectified Linear Unit activation function."""
-    return np.maximum(0, z)
+    return np.where(z > 0, z, 0)
 
 def relu_derivative(z):
     """Derivative of ReLU activation function."""
