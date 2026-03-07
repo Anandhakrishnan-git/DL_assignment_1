@@ -133,7 +133,7 @@ class NeuralNetwork:
             delta = (probs - y_true) / m
         elif self.loss_name == "mse":
             probs = softmax(logits)
-            dL_dprobs = 2.0 * (probs - y_true) / y_true.size
+            dL_dprobs = 2.0 * (probs - y_true) / m
             jacobians = softmax_derivative(logits)
             delta = np.einsum("bi,bij->bj", dL_dprobs, jacobians)
         else:
@@ -156,8 +156,7 @@ class NeuralNetwork:
             if layer_idx > 0:
                 delta = (delta @ layer.W.T) * self.activation_derivative(self._z_cache[layer_idx - 1])
 
-        grad_W_list.reverse()
-        grad_b_list.reverse()
+
         # Create explicit object arrays to avoid numpy trying to broadcast shapes.
         self.grad_W = np.empty(len(grad_W_list), dtype=object)
         self.grad_b = np.empty(len(grad_b_list), dtype=object)
@@ -165,7 +164,7 @@ class NeuralNetwork:
             self.grad_W[i] = gw.astype(np.float64)
             self.grad_b[i] = gb.astype(np.float64)
 
-        return self.grad_W, self.grad_b
+        return self.grad_W/m, self.grad_b/m
             
     def update_weights(self):
         """
