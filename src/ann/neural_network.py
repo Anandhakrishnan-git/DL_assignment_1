@@ -156,7 +156,8 @@ class NeuralNetwork:
             if layer_idx > 0:
                 delta = (delta @ layer.W.T) * self.activation_derivative(self._z_cache[layer_idx - 1])
 
-        
+        grad_W_list.reverse()
+        grad_b_list.reverse()
         # Create explicit object arrays to avoid numpy trying to broadcast shapes.
         self.grad_W = np.empty(len(grad_W_list), dtype=object)
         self.grad_b = np.empty(len(grad_b_list), dtype=object)
