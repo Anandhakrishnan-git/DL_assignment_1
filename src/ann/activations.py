@@ -28,7 +28,7 @@ def tanh(z):
 
 def tanh_derivative(z):
     """Derivative of Tanh activation function."""
-    t = np.tanh(z)
+    t = tanh(z)
     return 1 - t**2
 
 def softmax(z):
