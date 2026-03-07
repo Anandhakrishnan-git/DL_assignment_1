@@ -3,7 +3,7 @@
   "epochs": 20,
   "batch_size": 64,
   "learning_rate": 0.034369755404477266,
-  "weight_decay": 0.0,
+  "weight_decay": 2.152989422140758e-05,
   "optimizer": "momentum",
   "num_layers": 2,
   "hidden_size": [
@@ -15,11 +15,11 @@
   "weight_init": "xavier",
   "wandb_project": "nn_training",
   "model_save_path": "src/",
-  "val_loss": 0.10330127121633569,
-  "val_acc": 0.9808333333333333,
-  "test_loss": 0.0851468469949824,
-  "test_acc": 0.982,
-  "test_precision": 0.9818893002786394,
-  "test_recall": 0.9817626611049309,
-  "test_f1": 0.9818181040177161
+  "val_loss": 0.10833377939210867,
+  "val_acc": 0.9818333333333333,
+  "test_loss": 0.08672118922505281,
+  "test_acc": 0.9832,
+  "test_precision": 0.9831798590579319,
+  "test_recall": 0.9829194863452912,
+  "test_f1": 0.983038257514487
 }
