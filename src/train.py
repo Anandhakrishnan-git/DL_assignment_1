@@ -19,7 +19,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Train a neural network')
 
     parser.add_argument('-d', '--dataset', type=str, choices=['mnist', 'fashion_mnist'], default='mnist', help='Dataset to train on')
-    parser.add_argument('-e', '--epochs', type=int, default= 40, help='Number of training epochs')
+    parser.add_argument('-e', '--epochs', type=int, default= 20, help='Number of training epochs')
     parser.add_argument('-b', '--batch_size', type=int, default= 64, help='Mini-batch size')
     parser.add_argument('-lr', '--learning_rate', type=float, default= 0.034369755404477266, help='Learning rate for optimizer')
     parser.add_argument('-wd', '--weight_decay', type=float, default=0.00002152989422140758, help='Weight decay for L2 regularization')
