@@ -58,50 +58,50 @@ def main():
         y_val=Y_val,
     )
 
-    print("Evaluating on validation and test sets...")
-    val_loss, val_acc = model.evaluate(X_val, Y_val)
-    test_loss, test_acc = model.evaluate(X_test, Y_test)
-    test_logits = model.forward(X_test)
-    y_true = np.argmax(Y_test, axis=1)
-    y_pred = np.argmax(test_logits, axis=1)
-    test_precision, test_recall, test_f1, _ = precision_recall_fscore_support(
-        y_true, y_pred, average='macro', zero_division=0
-    )
+    # print("Evaluating on validation and test sets...")
+    # val_loss, val_acc = model.evaluate(X_val, Y_val)
+    # test_loss, test_acc = model.evaluate(X_test, Y_test)
+    # test_logits = model.forward(X_test)
+    # y_true = np.argmax(Y_test, axis=1)
+    # y_pred = np.argmax(test_logits, axis=1)
+    # test_precision, test_recall, test_f1, _ = precision_recall_fscore_support(
+    #     y_true, y_pred, average='macro', zero_division=0
+    # )
 
 
 
-    src_dir = os.path.dirname(__file__)
-    best_model_path = os.path.join(src_dir, "best_model.npy")
-    best_config_path = os.path.join(src_dir, "best_config.json")
+    # src_dir = os.path.dirname(__file__)
+    # best_model_path = os.path.join(src_dir, "best_model.npy")
+    # best_config_path = os.path.join(src_dir, "best_config.json")
 
-    best_so_far = -1.0
-    if os.path.exists(best_config_path):
-        with open(best_config_path, "r", encoding="utf-8") as f:
-            prev = json.load(f)
-            best_so_far = float(prev.get("test_f1", -1.0))
+    # best_so_far = -1.0
+    # if os.path.exists(best_config_path):
+    #     with open(best_config_path, "r", encoding="utf-8") as f:
+    #         prev = json.load(f)
+    #         best_so_far = float(prev.get("test_f1", -1.0))
 
-    if test_f1 >= best_so_far:
-        np.save(best_model_path, model.get_weights(), allow_pickle=True)
-        best_config = dict(vars(args))
-        best_config.update(
-            {
-                "val_loss": float(val_loss),
-                "val_acc": float(val_acc),
-                "test_loss": float(test_loss),
-                "test_acc": float(test_acc),
-                "test_precision": float(test_precision),
-                "test_recall": float(test_recall),
-                "test_f1": float(test_f1),
-            }
-        )
-        with open(best_config_path, "w", encoding="utf-8") as f:
-            json.dump(best_config, f, indent=2)
+    # if test_f1 >= best_so_far:
+    #     np.save(best_model_path, model.get_weights(), allow_pickle=True)
+    #     best_config = dict(vars(args))
+    #     best_config.update(
+    #         {
+    #             "val_loss": float(val_loss),
+    #             "val_acc": float(val_acc),
+    #             "test_loss": float(test_loss),
+    #             "test_acc": float(test_acc),
+    #             "test_precision": float(test_precision),
+    #             "test_recall": float(test_recall),
+    #             "test_f1": float(test_f1),
+    #         }
+    #     )
+    #     with open(best_config_path, "w", encoding="utf-8") as f:
+    #         json.dump(best_config, f, indent=2)
 
-    print(f"Validation | loss={val_loss:.4f}, accuracy={val_acc:.4f}")
-    print(f"Test       | loss={test_loss:.4f}, accuracy={test_acc:.4f}")
-    print(f"Test       | precision={test_precision:.4f}, recall={test_recall:.4f}, f1={test_f1:.4f}")
-    print(f"Best model path: {best_model_path}")
-    print(f"Best config path: {best_config_path}")
+    # print(f"Validation | loss={val_loss:.4f}, accuracy={val_acc:.4f}")
+    # print(f"Test       | loss={test_loss:.4f}, accuracy={test_acc:.4f}")
+    # print(f"Test       | precision={test_precision:.4f}, recall={test_recall:.4f}, f1={test_f1:.4f}")
+    # print(f"Best model path: {best_model_path}")
+    # print(f"Best config path: {best_config_path}")
     print("Training complete!")
 
 

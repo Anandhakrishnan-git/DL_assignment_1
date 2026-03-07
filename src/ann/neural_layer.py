@@ -9,18 +9,18 @@ class NeuralLayer:
         self.input_size = input_size
         self.output_size = output_size
         self.W = self._initialize_weights(weight_init)
-        self.b = np.zeros(output_size, dtype=np.float32)
+        self.b = np.zeros(output_size, dtype=np.float64)
         self.grad_W = np.zeros_like(self.W)
         self.grad_b = np.zeros_like(self.b)
     
     def _initialize_weights(self, method):
         if method == 'xavier':
             limit = np.sqrt(6 / (self.input_size + self.output_size))
-            return np.random.uniform(-limit, limit, (self.input_size, self.output_size)).astype(np.float32)
+            return np.random.uniform(-limit, limit, (self.input_size, self.output_size)).astype(np.float64)
         if method == 'zeros':
-            return np.zeros((self.input_size, self.output_size), dtype=np.float32)
+            return np.zeros((self.input_size, self.output_size), dtype=np.float64)
         if method == 'random':
-            return (np.random.randn(self.input_size, self.output_size) * 0.01).astype(np.float32)
+            return (np.random.randn(self.input_size, self.output_size) * 0.01).astype(np.float64)
         raise ValueError(f"Unknown weight initialization method: {method}")
 
     def forward(self, X):
