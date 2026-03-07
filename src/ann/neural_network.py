@@ -44,7 +44,7 @@ class NeuralNetwork:
         self.weight_init = getattr(cli_args, "weight_init", "xavier")
         self.loss_name = getattr(cli_args, "loss", "cross_entropy")
         self.learning_rate = float(getattr(cli_args, "learning_rate", 0.034369755404477266))
-        self.weight_decay = float(getattr(cli_args, "weight_decay", 0.00002152989422140758))
+        self.weight_decay = float(getattr(cli_args, "weight_decay", 0))
         optimizer_name = getattr(cli_args, "optimizer", "momentum")
 
         self.layers = []
