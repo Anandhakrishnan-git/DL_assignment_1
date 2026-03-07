@@ -33,7 +33,6 @@ class NeuralLayer:
         db = np.sum(d_out, axis=0) # shape (batch_size, output_size) -> (output_size,)
         self.grad_W = dW
         self.grad_b = db
-        self.grad_norm = np.sqrt(np.sum(dW**2) + np.sum(db**2))
         return dW, db
     
 
