@@ -11,7 +11,6 @@ try:
     from ann.neural_network import NeuralNetwork
     from utils.data_loader import load_dataset
 except ModuleNotFoundError:
-    # Support package-style imports when used as `import src.inference`.
     from .ann.neural_network import NeuralNetwork
     from .utils.data_loader import load_dataset
 
@@ -24,13 +23,13 @@ def parse_arguments():
 
     parser.add_argument('-d', '--dataset', type=str, choices=['mnist', 'fashion_mnist'],
                         default='mnist', help='Dataset to evaluate on')
-    parser.add_argument('-e', '--epochs', type=int, default=20, help='Number of training epochs (kept for CLI parity)')
+    parser.add_argument('-e', '--epochs', type=int, default=20, help='Number of training epochs ')
     parser.add_argument('-b', '--batch_size', type=int, default=64,
                         help='Batch size for inference')
-    parser.add_argument('-lr', '--learning_rate', type=float, default= 0.034369755404477266, help='Learning rate (kept for CLI parity)')
-    parser.add_argument('-wd', '--weight_decay', type=float, default=0.00002152989422140758, help='Weight decay (kept for CLI parity)')
+    parser.add_argument('-lr', '--learning_rate', type=float, default= 0.034369755404477266, help='Learning rate ')
+    parser.add_argument('-wd', '--weight_decay', type=float, default=0.00002152989422140758, help='Weight decay ')
     parser.add_argument('-o', '--optimizer', type=str, choices=['sgd', 'momentum', 'nag', 'rmsprop'],
-                        default='momentum', help='Optimizer (kept for CLI parity)')
+                        default='momentum', help='Optimizer')
     parser.add_argument('-nhl', '--num_layers', type=int, default=2,
                         help='Number of hidden layers')
     parser.add_argument('-sz', '--hidden_size', type=int, nargs='+', default=[128, 128],
@@ -38,11 +37,11 @@ def parse_arguments():
     parser.add_argument('-a', '--activation', type=str, choices=['sigmoid', 'tanh', 'relu'],
                         default='relu', help='Activation function for hidden layers')
     parser.add_argument('-l', '--loss', type=str, choices=['cross_entropy', 'mse'],
-                        default='cross_entropy', help='Loss function (kept for CLI parity)')
+                        default='cross_entropy', help='Loss function ')
     parser.add_argument('-w_i', '--weight_init', type=str, choices=['random', 'xavier', 'zeros'],
                         default='xavier', help='Weight initialization method')
-    parser.add_argument('-w_p', '--wandb_project', type=str, default='nn_training', help='W&B project name (kept for CLI parity)')
-    parser.add_argument('--model_save_path', type=str, default='models/', help='Model save path (kept for CLI parity)')
+    parser.add_argument('-w_p', '--wandb_project', type=str, default='nn_training', help='W&B project name ')
+    parser.add_argument('--model_save_path', type=str, default='models/', help='Model save path ')
     parser.add_argument('--model_path', type=str,default= 'src/best_model.npy' ,
                         help='Path to saved model weights (relative path)')
 
@@ -55,9 +54,6 @@ def load_model(model_path):
     """
     model_data = np.load(model_path, allow_pickle=True).item()
 
-    # Handle both saved formats:
-    # 1) metadata dict with "weights"/"biases"
-    # 2) plain weight dict with W0, b0, ...
     if "weights" in model_data and "biases" in model_data:
         args = argparse.Namespace(
                 num_layers=len(model_data["hidden_sizes"]),

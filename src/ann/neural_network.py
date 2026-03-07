@@ -37,15 +37,15 @@ class NeuralNetwork:
         self.output_size = 10       # number of classes in the dataset (digits 0-9 for MNIST)
         
 
-        hidden_sizes = list(getattr(cli_args, "hidden_size", [128, 64]))
+        hidden_sizes = list(getattr(cli_args, "hidden_size", [128, 128]))
         self.hidden_sizes = hidden_sizes
 
         self.activation_name = getattr(cli_args, "activation", "relu")
         self.weight_init = getattr(cli_args, "weight_init", "xavier")
         self.loss_name = getattr(cli_args, "loss", "cross_entropy")
-        self.learning_rate = float(getattr(cli_args, "learning_rate", 0.001))
-        self.weight_decay = float(getattr(cli_args, "weight_decay", 0.0))
-        optimizer_name = getattr(cli_args, "optimizer", "sgd")
+        self.learning_rate = float(getattr(cli_args, "learning_rate", 0.034369755404477266))
+        self.weight_decay = float(getattr(cli_args, "weight_decay", 0.00002152989422140758))
+        optimizer_name = getattr(cli_args, "optimizer", "momentum")
 
         self.layers = []
         layer_sizes = [self.input_size] + self.hidden_sizes + [self.output_size]        # full architecture of the network
