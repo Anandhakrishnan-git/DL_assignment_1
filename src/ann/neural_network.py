@@ -161,8 +161,8 @@ class NeuralNetwork:
         self.grad_W = np.empty(len(grad_W_list), dtype=object)
         self.grad_b = np.empty(len(grad_b_list), dtype=object)
         for i, (gw, gb) in enumerate(zip(grad_W_list, grad_b_list)):
-            self.grad_W[i] = gw
-            self.grad_b[i] = gb
+            self.grad_W[i] = gw.astype(np.float64)
+            self.grad_b[i] = gb.astype(np.float64)
 
         return self.grad_W, self.grad_b
             
