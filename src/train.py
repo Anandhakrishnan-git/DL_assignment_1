@@ -35,13 +35,6 @@ def parse_arguments():
     return parser.parse_args()
 
 
-def resolve_model_path(path, dataset):
-    if path.endswith(".npz"):
-        return path
-    if path.endswith("/") or path.endswith("\\") or os.path.isdir(path):
-        return os.path.join(path, f"{dataset}_mlp.npy")
-    return f"{path}.npy"
-
 
 def main():
     """
@@ -75,8 +68,7 @@ def main():
         y_true, y_pred, average='macro', zero_division=0
     )
 
-    model_path = resolve_model_path(args.model_save_path, args.dataset)
-    model.save_model(model_path)
+
 
     src_dir = os.path.dirname(__file__)
     best_model_path = os.path.join(src_dir, "best_model.npy")
@@ -108,7 +100,6 @@ def main():
     print(f"Validation | loss={val_loss:.4f}, accuracy={val_acc:.4f}")
     print(f"Test       | loss={test_loss:.4f}, accuracy={test_acc:.4f}")
     print(f"Test       | precision={test_precision:.4f}, recall={test_recall:.4f}, f1={test_f1:.4f}")
-    print(f"Model saved to: {model_path}")
     print(f"Best model path: {best_model_path}")
     print(f"Best config path: {best_config_path}")
     print("Training complete!")

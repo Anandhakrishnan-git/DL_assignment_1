@@ -238,25 +238,6 @@ class NeuralNetwork:
         accuracy = float(np.mean(np.argmax(logits, axis=1) == np.argmax(y, axis=1)))         
         return float(loss), accuracy
 
-    def save_model(self, model_path):
-        """Save model weights and metadata as a single .npy file."""
-        model_dir = os.path.dirname(model_path)
-        if model_dir:
-            os.makedirs(model_dir, exist_ok=True)
-        
-        # Prepare model data
-        model_data = {
-            "hidden_sizes": self.hidden_sizes,
-            "activation_name": self.activation_name,
-            "weight_init": self.weight_init,
-            "loss_name": self.loss_name,
-            "learning_rate": self.learning_rate,
-            "weight_decay": self.weight_decay,
-            "optimizer": type(self.optimizer).__name__.lower(),
-            "weights": [layer.W for layer in self.layers],
-            "biases": [layer.b for layer in self.layers],
-        }
-        np.save(model_path, model_data, allow_pickle=True)
 
     def get_weights(self):
         d = {}
