@@ -90,8 +90,8 @@ Outputs include:
 
 `Github` : https://github.com/Anandhakrishnan-git/DL_assignment_1
 
-`wanb` : https://wandb.ai/anandhakrishnanm21-indian-institute-of-technology-madras/q2_5_dead_neurons/reports/Multi-Layer-Perceptron-for-Image-Classification--VmlldzoxNjExNjEzMA
-
+`wanb` : [https://wandb.ai/anandhakrishnanm21-indian-institute-of-technology-madras/q2_5_dead_neurons/reports/Multi-Layer-Perceptron-for-Image-Classification--VmlldzoxNjExNjEzMA
+](https://api.wandb.ai/links/anandhakrishnanm21-indian-institute-of-technology-madras/cimlcdav)
 ## License
 
 This project is licensed under the terms in [LICENSE](LICENSE).
